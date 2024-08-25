@@ -1,6 +1,5 @@
-import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { WomenModule } from './women/women.module';
+import { Woman } from './women/woman.entity';
 
 @Module({
   imports: [
@@ -11,10 +10,10 @@ import { WomenModule } from './women/women.module';
       username: 'root',
       password: 'password',
       database: 'women_db',
-      autoLoadEntities: true,
+      entities: [Woman],
       synchronize: true,
     }),
-    WomenModule,
+    TypeOrmModule.forFeature([Woman]),
   ],
+  ...
 })
-export class AppModule {}
