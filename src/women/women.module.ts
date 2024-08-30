@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { WomenService } from './women.service';
-import { WomenController } from './women.controller.spec';
+import { WomenController } from './women.controller';
 import { WomenRepository } from './women.repository';
 import { Woman } from './woman.entity';
 

@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { WomenRepository } from './women.repository';
-import { CreateWomanDto } from './create.woman.dto';
-import { UpdateWomanDto } from './update.woman.dto';
+import { CreateWomanDto } from './dto/create.woman.dto';
+import { UpdateWomanDto } from './dto/update.woman.dto';
 import { Woman } from './woman.entity';
 
 @Injectable()

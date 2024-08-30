@@ -9,8 +9,11 @@ export class Woman {
   name: string;
 
   @Column()
-  portfolioUrl: string;
+  portfolioUrl?: string;
 
   @Column({ nullable: true })
   linkedInProfile?: string;
+
+  @Column()
+  trabalhoModalidade?: string;
 }

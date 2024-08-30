@@ -1,20 +1,17 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { WomenModule } from './women/women.module';
+import { Woman } from './women/woman.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'password',
-      database: 'women_db',
-      autoLoadEntities: true,
+      type: 'postgres',
+      url: process.env.DATABASE_URL,
+      entities: [__dirname + Woman],
       synchronize: true,
     }),
-    WomenModule,
+    forwardRef(() => WomenModule),
   ],
 })
 export class AppModule {}
