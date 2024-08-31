@@ -10,3 +10,11 @@ O projeto "Mulheres Em Movimento" é uma iniciativa voltada para dar visibilidad
 - NestJS: Framework Node.js robusto, ideal para a construção de aplicações backend escaláveis, modulares e eficientes, facilitando o desenvolvimento de APIs e serviços.
 - Jest: Framework de testes abrangente para JavaScript, projetado para garantir a qualidade e a confiabilidade do código através de testes automatizados.
 - Swagger: Ferramenta poderosa para a documentação de APIs, permitindo a geração de documentação interativa e facilitando a integração entre desenvolvedores e sistemas.
+
+# Executar o projeto
+
+npm run start
+
+# Executar testes
+
+npm run test
