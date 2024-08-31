@@ -1,15 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { WomenRepository } from './women.repository';
+// import { WomenRepository } from './women.repository';
 import { CreateWomanDto } from './dto/create.woman.dto';
 import { UpdateWomanDto } from './dto/update.woman.dto';
 import { Woman } from './woman.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class WomenService {
   constructor(
-    @InjectRepository(WomenRepository)
-    private readonly womenRepository: WomenRepository,
+    @InjectRepository(Woman)
+    private womenRepository: Repository<Woman>,
   ) {}
 
   async create(createWomanDto: CreateWomanDto): Promise<Woman> {
@@ -18,19 +19,27 @@ export class WomenService {
   }
 
   async findAll(): Promise<Woman[]> {
-    return this.womenRepository.findAll();
+    return this.womenRepository.find();
   }
 
   async findOne(id: number): Promise<Woman> {
-    return this.womenRepository.findOne({ where: { id } });
+    const woman = await this.womenRepository.findOne({ where: { id } });
+    if (!woman) {
+      throw new NotFoundException(`Cadastro não encontrado`);
+    }
+    return woman;
   }
 
-  async update(id: number, updateWomanDto: UpdateWomanDto): Promise<Woman> {
-    await this.womenRepository.update(id, updateWomanDto);
-    return this.findOne(id);
+  async update(updateWomanDto: UpdateWomanDto): Promise<Woman> {
+    await this.womenRepository.update(updateWomanDto.id, updateWomanDto);
+    return this.findOne(updateWomanDto.id);
   }
 
   async remove(id: number): Promise<void> {
+    const woman = await this.womenRepository.findOne({ where: { id } });
+    if (!woman) {
+      throw new NotFoundException(`Cadastro não encontrado`);
+    }
     await this.womenRepository.delete(id);
   }
 }

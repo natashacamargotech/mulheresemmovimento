@@ -1,4 +1,4 @@
-import { forwardRef, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { WomenModule } from './women/women.module';
 // import { Woman } from './women/woman.entity';
@@ -15,7 +15,7 @@ require('dotenv').config();
       entities: [__dirname + '/../**/*.entity.js'],
       synchronize: true,
     }),
-    forwardRef(() => WomenModule),
+    WomenModule,
   ],
 })
 export class AppModule {}
