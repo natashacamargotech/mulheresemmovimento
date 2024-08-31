@@ -12,16 +12,16 @@ export class WomenService {
     private readonly womenRepository: WomenRepository,
   ) {}
 
-  create(createWomanDto: CreateWomanDto): Promise<Woman> {
+  async create(createWomanDto: CreateWomanDto): Promise<Woman> {
     const woman = this.womenRepository.create(createWomanDto);
     return this.womenRepository.save(woman);
   }
 
-  findAll(): Promise<Woman[]> {
-    return this.womenRepository.find();
+  async findAll(): Promise<Woman[]> {
+    return this.womenRepository.findAll();
   }
 
-  findOne(id: number): Promise<Woman> {
+  async findOne(id: number): Promise<Woman> {
     return this.womenRepository.findOne({ where: { id } });
   }
 
