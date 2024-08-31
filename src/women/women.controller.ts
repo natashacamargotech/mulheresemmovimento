@@ -61,16 +61,13 @@ export class WomenController {
     type: Woman,
   })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
-  async update(
-    @Param('id') id: number,
-    @Body() updateWomanDto: UpdateWomanDto,
-  ): Promise<Woman> {
-    return this.womenService.update(id, updateWomanDto);
+  async update(@Body() updateWomanDto: UpdateWomanDto): Promise<Woman> {
+    return this.womenService.update(updateWomanDto);
   }
 
   @Delete(':id')
   @ApiOperation({ summary: 'Apagar cadastro por ID' })
-  @ApiResponse({ status: 204, description: 'Cadastro excluído com sucesso.' })
+  @ApiResponse({ status: 200, description: 'Cadastro excluído com sucesso.' })
   @ApiResponse({ status: 404, description: 'Cadastro não encontrado.' })
   async remove(@Param('id') id: number): Promise<void> {
     return this.womenService.remove(id);
